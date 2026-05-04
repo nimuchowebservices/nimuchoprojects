@@ -1,25 +1,32 @@
 {% extends 'main/base.html' %}
-{% load static %}
 {% block title %}Home{% endblock %}
 {% block content %}
 <div class="hero-section">
     <div class="container text-center">
         <h1 class="display-4 fw-bold">Welcome to Nimucho Digital Hub</h1>
-        <p class="lead">Where creativity meets technology – we bring your brand to life.</p>
-        <a href="{% url 'apply_client' %}" class="btn btn-light btn-lg">Start Your Project</a>
-        <a href="{% url 'services' %}" class="btn btn-outline-light btn-lg ms-2">Explore Services</a>
+        <p class="lead mb-4">Innovative digital marketing & creative solutions that elevate your brand.</p>
+        <a href="{% url 'apply_client' %}" class="btn btn-light btn-lg me-2">Start Your Project</a>
+        <a href="{% url 'services' %}" class="btn btn-outline-light btn-lg">Explore Services</a>
     </div>
 </div>
-
-<div class="container my-5">
-    <h2 class="text-center mb-4">What We Offer</h2>
-    <div class="row">
+<div class="container py-5">
+    <h2 class="text-center mb-5">Our Core Services</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Digital Marketing</h5>
+                    <p class="card-text">SEO, PPC, social media, and content marketing to drive traffic and conversions.</p>
+                </div>
+            </div>
+        </div>
         <div class="col-md-4">
             <div class="card text-center h-100">
                 <div class="card-body">
                     <i class="fas fa-paintbrush fa-3x text-primary mb-3"></i>
                     <h5 class="card-title">Graphic Design</h5>
-                    <p class="card-text">Logos, brochures, social media graphics, and brand identity.</p>
+                    <p class="card-text">Eye-catching branding, logos, and visuals that tell your story.</p>
                 </div>
             </div>
         </div>
@@ -28,25 +35,37 @@
                 <div class="card-body">
                     <i class="fas fa-code fa-3x text-primary mb-3"></i>
                     <h5 class="card-title">Web Development</h5>
-                    <p class="card-text">Responsive websites, e-commerce, and web applications.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-center h-100">
-                <div class="card-body">
-                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
-                    <h5 class="card-title">Digital Marketing</h5>
-                    <p class="card-text">SEO, social media management, and online advertising.</p>
+                    <p class="card-text">Fast, responsive websites and e-commerce solutions.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="container my-5 text-center">
-    <h3>Ready to start your project?</h3>
-    <p class="lead">Let's bring your ideas to life with our creative expertise.</p>
-    <a href="{% url 'apply_client' %}" class="btn btn-success btn-lg">Apply as Client</a>
+<div class="bg-dark py-5">
+    <div class="container">
+        <h2 class="text-center text-white mb-5">Why Choose Us?</h2>
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <i class="fas fa-tachometer-alt fa-3x text-primary mb-3"></i>
+                <h5>Fast Delivery</h5>
+                <p>Agile workflows that meet deadlines without compromising quality.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-rocket fa-3x text-primary mb-3"></i>
+                <h5>Growth Focus</h5>
+                <p>Strategies designed to scale your business and maximize ROI.</p>
+            </div>
+            <div class="col-md-4">
+                <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                <h5>24/7 Support</h5>
+                <p>Dedicated team always ready to help with any issue.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container py-5 text-center">
+    <h3>Ready to grow online?</h3>
+    <p class="lead mb-4">Let’s create a custom digital strategy for your brand.</p>
+    <a href="{% url 'apply_client' %}" class="btn btn-success btn-lg">Get a Free Consultation</a>
 </div>
 {% endblock %}
