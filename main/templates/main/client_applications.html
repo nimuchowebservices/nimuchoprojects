@@ -1,0 +1,31 @@
+﻿{% extends 'main/base.html' %}
+{% block title %}Client Applications{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Client Applications</h1>
+    <div class="row mb-4">
+        <div class="col-md-3"><div class="card bg-primary text-white"><div class="card-body"><h5>Total</h5><h2>{{ stats.total }}</h2></div></div></div>
+        <div class="col-md-3"><div class="card bg-warning text-dark"><div class="card-body"><h5>Pending</h5><h2>{{ stats.pending }}</h2></div></div></div>
+        <div class="col-md-3"><div class="card bg-success text-white"><div class="card-body"><h5>Approved</h5><h2>{{ stats.approved }}</h2></div></div></div>
+        <div class="col-md-3"><div class="card bg-danger text-white"><div class="card-body"><h5>Rejected</h5><h2>{{ stats.rejected }}</h2></div></div></div>
+    </div>
+    <form method="get" class="row g-3 mb-4">
+        <div class="col-md-4"><select name="status" class="form-select"><option value="">All</option><option value="pending" {% if status_filter == 'pending' %}selected{% endif %}>Pending</option><option value="approved" {% if status_filter == 'approved' %}selected{% endif %}>Approved</option><option value="rejected" {% if status_filter == 'rejected' %}selected{% endif %}>Rejected</option></select></div>
+        <div class="col-md-6"><input type="text" name="search" class="form-control" placeholder="Name, email, phone" value="{{ search_query }}"></div>
+        <div class="col-md-2"><button type="submit" class="btn btn-primary w-100">Filter</button></div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead><tr><th>ID</th><th>Name</th><th>Service</th><th>Email</th><th>Phone</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+            <tbody>
+                {% for app in applications %}
+                <tr><td>{{ app.id }}</td><td>{{ app.full_name }}</td><td>{{ app.get_service_type_display }}</td><td>{{ app.email }}</td><td>{{ app.phone }}</td><td>{{ app.submitted_date|date:"M d, Y" }}</td><td><span class="badge {% if app.status == 'pending' %}bg-warning{% elif app.status == 'approved' %}bg-success{% else %}bg-danger{% endif %}">{{ app.get_status_display }}</span></td><td><a href="{% url 'update_status' app.id %}" class="btn btn-sm btn-info">Update</a></td></tr>
+                {% empty %}<tr><td colspan="8" class="text-center">No applications found.</td></tr>{% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if applications.has_other_pages %}
+    <nav><ul class="pagination justify-content-center">{% if applications.has_previous %}<li class="page-item"><a class="page-link" href="?page={{ applications.previous_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Previous</a></li>{% endif %}{% for num in applications.paginator.page_range %}<li class="page-item {% if applications.number == num %}active{% endif %}"><a class="page-link" href="?page={{ num }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a></li>{% endfor %}{% if applications.has_next %}<li class="page-item"><a class="page-link" href="?page={{ applications.next_page_number }}{% if status_filter %}&status={{ status_filter }}{% endif %}{% if search_query %}&search={{ search_query }}{% endif %}">Next</a></li>{% endif %}</ul></nav>
+    {% endif %}
+</div>
+{% endblock %}

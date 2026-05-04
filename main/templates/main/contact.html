@@ -1,0 +1,38 @@
+﻿{% extends 'main/base.html' %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+<div class="container my-5">
+    <h1 class="text-center mb-4">Get In Touch</h1>
+    <div class="row">
+        <div class="col-lg-6 mb-4">
+            <div class="card p-4">
+                <h4><i class="fas fa-paper-plane me-2"></i> Send us a message</h4>
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="card p-4 h-100">
+                <h4><i class="fas fa-address-card me-2"></i> Contact Information</h4>
+                <hr>
+                <p><i class="fas fa-map-marker-alt me-3 fa-fw"></i> Kampala, Uganda</p>
+                <p><i class="fas fa-phone-alt me-3 fa-fw"></i> <a href="tel:+256703281538" class="phone-link">+256 703 281 538</a></p>
+                <p><i class="fab fa-whatsapp me-3 fa-fw whatsapp-link"></i> <a href="https://wa.me/256703281538" target="_blank" class="whatsapp-link">Chat on WhatsApp</a></p>
+                <p><i class="fas fa-envelope me-3 fa-fw"></i> <a href="mailto:info@nimucho.com" class="phone-link">info@nimucho.com</a></p>
+                <hr>
+                <h5>Follow Us</h5>
+                <div class="social-links mt-2">
+                    <a href="https://facebook.com/yourpage" target="_blank" class="me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a href="https://twitter.com/yourhandle" target="_blank" class="me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                    <a href="https://instagram.com/yourhandle" target="_blank" class="me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="https://linkedin.com/company/yourcompany" target="_blank" class="me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a href="https://www.tiktok.com/@yourusername" target="_blank"><i class="fab fa-tiktok fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

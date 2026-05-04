@@ -1,0 +1,96 @@
+﻿{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- Hero section with responsive image -->
+<div class="hero-section" style="background: linear-gradient(135deg, #0a0f1c 0%, #1a1f2e 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <h1 class="display-4 fw-bold">Welcome to Nimucho Digital Hub</h1>
+                <p class="lead">Innovative digital solutions that elevate your brand.</p>
+                <a href="{% url 'apply_client' %}" class="btn btn-light btn-lg">Start Your Project</a>
+                <a href="{% url 'services' %}" class="btn btn-outline-light btn-lg ms-2">Explore Services</a>
+            </div>
+            <div class="col-md-6 mt-4 mt-md-0">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=400&q=80" class="img-fluid rounded shadow" alt="Digital Hub Hero" style="max-height: 400px; width: 100%; object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">What We Offer</h2>
+    <div class="row g-4">
+        <div class="col-sm-6 col-lg-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-paintbrush fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Graphic Design</h5>
+                    <p class="card-text">Logos, brochures, social media graphics, and brand identity.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Web Development</h5>
+                    <p class="card-text">Responsive websites, e-commerce, and web applications.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-lg-4">
+            <div class="card text-center h-100">
+                <div class="card-body">
+                    <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Digital Marketing</h5>
+                    <p class="card-text">SEO, social media management, and online advertising.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent projects section -->
+{% if recent_projects %}
+<div class="bg-dark py-5">
+    <div class="container">
+        <h2 class="text-center text-white mb-4">Recent Projects</h2>
+        <div class="row g-4">
+            {% for project in recent_projects %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 bg-secondary bg-opacity-25 text-white">
+                    {% if project.image %}
+                    <img src="{{ project.image.url }}" class="card-img-top img-fluid" alt="{{ project.title }}" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <img src="https://via.placeholder.com/400x300?text=Project+Image" class="card-img-top img-fluid" alt="Project placeholder" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.description|truncatewords:15 }}</p>
+                        <p class="text-muted"><small>{{ project.client_name }} | {{ project.completion_date }}</small></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'projects' %}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container my-5 text-center">
+    <div class="alert alert-info">No recent projects yet. Check back soon!</div>
+</div>
+{% endif %}
+
+<!-- Call to action -->
+<div class="container my-5 text-center">
+    <h3>Ready to start your project?</h3>
+    <p class="lead">Let's bring your ideas to life with our creative expertise.</p>
+    <a href="{% url 'apply_client' %}" class="btn btn-success btn-lg">Apply as Client</a>
+</div>
+{% endblock %}

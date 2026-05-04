@@ -1,0 +1,1 @@
+web: gunicorn nimucho_project.wsgi:application

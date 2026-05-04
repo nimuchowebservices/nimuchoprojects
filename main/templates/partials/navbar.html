@@ -1,0 +1,58 @@
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">
+            <i class="fas fa-palette"></i> Nimucho Digital
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Services</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'services' %}">All Services</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'services' %}#smm">Social Media Management</a></li>
+                        <li><a class="dropdown-item" href="{% url 'services' %}#growth">Social Media Growth</a></li>
+                        <li><a class="dropdown-item" href="{% url 'services' %}#branding">Branding</a></li>
+                        <li><a class="dropdown-item" href="{% url 'services' %}#music">Music Distribution</a></li>
+                        <li><a class="dropdown-item" href="{% url 'services' %}#graphics">Graphic Design</a></li>
+                        <li><a class="dropdown-item" href="{% url 'services' %}#video">Video Editing</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Portfolio</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'projects' %}">All Projects</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{% url 'projects' %}?category=branding">Branding</a></li>
+                        <li><a class="dropdown-item" href="{% url 'projects' %}?category=social-media">Social Media</a></li>
+                        <li><a class="dropdown-item" href="{% url 'projects' %}?category=graphics">Graphics</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Admin</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{% url 'add_project' %}">Add Project</a></li>
+                        <li><a class="dropdown-item" href="{% url 'add_service' %}">Add Service</a></li>
+                        <li><a class="dropdown-item" href="/admin/logout/">Logout</a></li>
+                    </ul>
+                </li>
+                {% endif %}
+            </ul>
+            <div class="social-quick-links ms-3">
+                <a href="https://wa.me/1234567890" target="_blank" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://instagram.com/nimucho" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@nimucho" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>
