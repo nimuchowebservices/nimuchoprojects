@@ -171,3 +171,18 @@ def create_superuser_temp(request):
         return HttpResponse(f"Superuser '{username}' created successfully!")
     else:
         return HttpResponse(f"Superuser '{username}' already exists.")
+
+
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+def reset_admin_password(request):
+    secret = request.GET.get('secret')
+    if secret != 'nimucho2026':
+        return HttpResponse("Access denied", status=403)
+    try:
+        user = User.objects.get(username='admin')
+        user.set_password('Nimucho2026!')
+        user.save()
+        return HttpResponse("Password for 'admin' has been reset to 'Nimucho2026!'")
+    except User.DoesNotExist:
+        return HttpResponse("User 'admin' does not exist", status=404)
