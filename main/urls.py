@@ -13,7 +13,7 @@ urlpatterns = [
     path('admin/add-project/', views.add_project, name='add_project'),
     path('admin/contact-messages/', views.contact_messages, name='contact_messages'),
     path('create-superuser/', views.create_superuser_temp, name='create_superuser'),
-    path('reset-password/', views.reset_admin_password, name='reset_admin_password'),
 ]
+
 
 

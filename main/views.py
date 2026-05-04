@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+﻿from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import JsonResponse
@@ -155,27 +155,6 @@ def contact_messages(request):
     return render(request, 'main/contact_messages.html', {'messages': messages_list})
 
 
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-import os
-
-def create_superuser_temp(request):
-    secret = request.GET.get('secret')
-    if secret != 'nimucho2026':
-        return HttpResponse("Access denied", status=403)
-    username = os.environ.get('SU_USER', 'admin')
-    email = os.environ.get('SU_EMAIL', 'admin@example.com')
-    password = os.environ.get('SU_PASSWORD', 'Nimucho2026!')
-    if not User.objects.filter(username=username).exists():
-        User.objects.create_superuser(username=username, email=email, password=password)
-        return HttpResponse(f"Superuser '{username}' created successfully!")
-    else:
-        return HttpResponse(f"Superuser '{username}' already exists.")
-
-
-from django.http import HttpResponse
-from django.contrib.auth.models import User
-def reset_admin_password(request):
     secret = request.GET.get('secret')
     if secret != 'nimucho2026':
         return HttpResponse("Access denied", status=403)
@@ -186,3 +165,4 @@ def reset_admin_password(request):
         return HttpResponse("Password for 'admin' has been reset to 'Nimucho2026!'")
     except User.DoesNotExist:
         return HttpResponse("User 'admin' does not exist", status=404)
+
