@@ -153,3 +153,21 @@ def add_project(request):
 def contact_messages(request):
     messages_list = ContactMessage.objects.all().order_by('-submitted_date')
     return render(request, 'main/contact_messages.html', {'messages': messages_list})
+
+
+from django.http import HttpResponse
+from django.contrib.auth.models import User
+import os
+
+def create_superuser_temp(request):
+    secret = request.GET.get('secret')
+    if secret != 'nimucho2026':
+        return HttpResponse("Access denied", status=403)
+    username = os.environ.get('SU_USER', 'admin')
+    email = os.environ.get('SU_EMAIL', 'admin@example.com')
+    password = os.environ.get('SU_PASSWORD', 'Nimucho2026!')
+    if not User.objects.filter(username=username).exists():
+        User.objects.create_superuser(username=username, email=email, password=password)
+        return HttpResponse(f"Superuser '{username}' created successfully!")
+    else:
+        return HttpResponse(f"Superuser '{username}' already exists.")

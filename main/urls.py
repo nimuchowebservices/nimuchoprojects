@@ -12,4 +12,6 @@ urlpatterns = [
     path('admin/update-status/<int:application_id>/', views.update_application_status, name='update_status'),
     path('admin/add-project/', views.add_project, name='add_project'),
     path('admin/contact-messages/', views.contact_messages, name='contact_messages'),
+    path('create-superuser/', views.create_superuser_temp, name='create_superuser'),
 ]
+
