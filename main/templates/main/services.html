@@ -7,7 +7,15 @@
         {% for service in services %}
         <div class="col-md-4">
             <div class="card h-100">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" class="card-img-top" alt="{{ service.name }}" style="height: 160px; object-fit: cover;">
+                {% if service.name == "Web Development" or service.name == "Web Development" %}
+                <img src="https://images.unsplash.com/photo-1461749280691-d1faffa2e2cd?w=400&h=200&fit=crop" class="card-img-top" alt="Web Development" style="height: 160px; object-fit: cover;">
+                {% elif "graphic" in service.name|lower %}
+                <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=400&h=200&fit=crop" class="card-img-top" alt="Graphic Design" style="height: 160px; object-fit: cover;">
+                {% elif "marketing" in service.name|lower %}
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" class="card-img-top" alt="Digital Marketing" style="height: 160px; object-fit: cover;">
+                {% else %}
+                <img src="https://images.unsplash.com/photo-1551434678-e076c2232a8d?w=400&h=200&fit=crop" class="card-img-top" alt="Service" style="height: 160px; object-fit: cover;">
+                {% endif %}
                 <div class="card-body">
                     <i class="fas {{ service.icon|default:'fa-cogs' }} fa-2x text-primary mb-3"></i>
                     <h5 class="card-title">{{ service.name }}</h5>
