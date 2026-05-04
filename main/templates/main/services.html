@@ -7,6 +7,7 @@
         {% for service in services %}
         <div class="col-md-4">
             <div class="card h-100">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop" class="card-img-top" alt="{{ service.name }}" style="height: 160px; object-fit: cover;">
                 <div class="card-body">
                     <i class="fas {{ service.icon|default:'fa-cogs' }} fa-2x text-primary mb-3"></i>
                     <h5 class="card-title">{{ service.name }}</h5>
@@ -17,6 +18,24 @@
         {% empty %}
         <div class="col-12 text-center">No services added yet. Please check back soon.</div>
         {% endfor %}
+    </div>
+    <div class="row mt-5 g-4">
+        <div class="col-md-6">
+            <div class="card bg-primary text-white text-center p-4">
+                <i class="fas fa-chalkboard-user fa-3x mb-3"></i>
+                <h4>Need a custom solution?</h4>
+                <p>We tailor our services to your unique business needs.</p>
+                <a href="{% url 'contact' %}" class="btn btn-light">Contact Us</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-secondary text-white text-center p-4">
+                <i class="fas fa-chart-simple fa-3x mb-3"></i>
+                <h4>Ready to scale?</h4>
+                <p>Let’s discuss a growth plan for your brand.</p>
+                <a href="{% url 'apply_client' %}" class="btn btn-light">Apply Now</a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
